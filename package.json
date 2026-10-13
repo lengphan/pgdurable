@@ -1,0 +1,49 @@
+{
+  "name": "pgdurable",
+  "version": "0.1.0",
+  "description": "A durable job queue that lives in your Postgres: retries, idempotency keys, scheduled jobs, crash recovery.",
+  "license": "MIT",
+  "author": "Linh Phan",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "postgres",
+    "postgresql",
+    "queue",
+    "job-queue",
+    "background-jobs",
+    "idempotency",
+    "skip-locked"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "test:local": "bash scripts/with-postgres.sh npm test",
+    "example": "bash scripts/with-postgres.sh node --import tsx examples/basic.ts",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "peerDependencies": {
+    "pg": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "pg": "^8.13.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
